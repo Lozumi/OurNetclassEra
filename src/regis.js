@@ -47,7 +47,7 @@ var regis_app = new Vue({
 					}
 				});
 				this.code_message = '请输入收到的验证码';
-			} mdui.mutation();
+			}
 		},
 		check: function(event) {
 			this.ok = true;
@@ -89,7 +89,7 @@ var regis_app = new Vue({
 						} else mdui.alert(res['msg'], '出错！');
 					}
 				});
-			} else mdui.mutation();
+			}
 		}
 	}
 })
