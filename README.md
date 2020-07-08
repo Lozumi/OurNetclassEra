@@ -1,2 +1,2 @@
-# SubmissionPlatform
-Submission Platform for Netclass Epoch Submission Activity.
+# NetclassEra
+Submission Platform for OurNetclassEra submission activity.
