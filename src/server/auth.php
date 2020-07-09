@@ -23,7 +23,7 @@ function login($user) {         //处理登录请求, 返回值为 {-1: Server E
     if (!$user) return -1;
     if (!($conn = mysqli_connect($SQL, "root", ""))) return -1;
     if (!mysqli_select_db($conn, "test")) return -1;
-    $cookie = md5(rand()+rand()*rand());    //防止撞车
+    $cookie = md5(rand()<<4 + $user);    //防止撞车
     $expire = time()+36000;
     $isloggedin = mysqli_query($conn, "SELECT * FROM auth WHERE userid='$user'");
     if (mysqli_num_rows($isloggedin)) {
