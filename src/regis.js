@@ -84,7 +84,7 @@ var regis_app = new Vue({
 						if(res['code'] == 0) {
 							mdui.alert('账号注册成功！\n一秒后跳转至登陆页面。', '注册成功！');
 							setTimeout(function() {
-								location = '/login';
+								location = '/login.html';
 							}, 1000);
 						} else mdui.alert(res['msg'], '出错！');
 					}

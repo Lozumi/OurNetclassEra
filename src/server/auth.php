@@ -1,25 +1,34 @@
 <?php
+
+$SQL = "localhost:3306";
+
 function auth($cookie) {
+    global $SQL;
     if (!$cookie) return False;
-    $conn = mysqli_connect("localhost:3308", "root", "");
-    if (!mysql_select_db($conn, "test")) die("Fail to switch database.");
+    $conn = mysqli_connect($SQL, "root", "");
+    if (!mysqli_select_db($conn, "test")) echo "Fail to switch database.";
     $user = mysqli_query($conn, "SELECT * FROM auth WHERE cookie='$cookie'");
     if (!mysqli_num_rows($user)) return False;
+    $expire = time()+360000;
+    setcookie("SESSIONID", $cookie, $expire);
+    mysqli_query($conn, "UPDATE auth SET expire=$expire WHERE userid=$user");
     return mysqli_fetch_array($user)['userid'];
 }
 
 function login($user) {
+    global $SQL;
     if (!$user) return False;
-    $conn = mysqli_connect("localhost:3308", "root", "");
-    var_dump($conn);
+    $conn = mysqli_connect($SQL, "root", "");
     if (!$conn) echo "Fail to connect to SQL";
-    if (!mysql_select_db($conn, "test")) echo "Fail to switch database.";
-    $cookie = hash("SHA128", rand_str());
+    if (!mysqli_select_db($conn, "test")) echo "Fail to switch database.";
+    $cookie = md5(rand());
+    $expire = time()+36000;
     $isloggedin = mysqli_query($conn, "SELECT * FROM auth WHERE userid='$user'");
     if (mysqli_num_rows($isloggedin)) {
-        mysqli_query($conn, "UPDATE auth SET cookie='$cookie' WHERE userid=$user");
+        mysqli_query($conn, "UPDATE auth SET cookie='$cookie', expire=$expire WHERE userid=$user");
     } else {
-        mysqli_query($conn, "INSERT INTO auth (userid, cookie) VALUES ($user, $cookie)");
+        mysqli_query($conn, "INSERT INTO auth (userid, cookie, expire) VALUES ($user, '$cookie', $expire)");
     }
+    setcookie("SESSIONID", "$cookie", time()+36000);
     return $cookie;
 }
