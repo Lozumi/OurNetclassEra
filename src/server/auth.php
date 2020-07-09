@@ -9,10 +9,12 @@ function auth($cookie) {
     if (!mysqli_select_db($conn, "test")) echo "Fail to switch database.";
     $user = mysqli_query($conn, "SELECT * FROM auth WHERE cookie='$cookie'");
     if (!mysqli_num_rows($user)) return False;
-    $expire = time()+360000;
+    $array = mysqli_fetch_array($user);
+    $expire = time()+36000;
+    if ($array['expire'] < time()) return False;
     setcookie("SESSIONID", $cookie, $expire);
     mysqli_query($conn, "UPDATE auth SET expire=$expire WHERE userid=$user");
-    return mysqli_fetch_array($user)['userid'];
+    return $array['userid'];
 }
 
 function login($user) {
@@ -21,7 +23,7 @@ function login($user) {
     $conn = mysqli_connect($SQL, "root", "");
     if (!$conn) echo "Fail to connect to SQL";
     if (!mysqli_select_db($conn, "test")) echo "Fail to switch database.";
-    $cookie = md5(rand());
+    $cookie = md5(rand()+rand()*rand());    //防止撞车
     $expire = time()+36000;
     $isloggedin = mysqli_query($conn, "SELECT * FROM auth WHERE userid='$user'");
     if (mysqli_num_rows($isloggedin)) {
