@@ -5,7 +5,7 @@ var login_app = new Vue({
 		password_input: ''
 	},
 	methods: {
-		get_login: function(event) {
+		get_login: function() {
 
 		}
 	}

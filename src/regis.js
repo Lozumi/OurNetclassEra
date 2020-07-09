@@ -16,19 +16,19 @@ var regis_app = new Vue({
 		ok: false
 	},
 	methods: {
-		clear_username_error: function(event) {
+		clear_username_error: function() {
 			this.is_username_error = false;
 		},
-		clear_password_error: function(event) {
+		clear_password_error: function() {
 			this.is_password_error = false;
 		},
-		clear_email_error: function(event) {
+		clear_email_error: function() {
 			this.is_email_error = false;
 		},
-		clear_code_error: function(event) {
+		clear_code_error: function() {
 			this.is_code_error = false;
 		},
-		send_email: function(event) {
+		send_email: function() {
 			if(!this.re_check_email.test(this.email_input))
 				this.is_email_error = true;
 			else {
@@ -61,7 +61,7 @@ var regis_app = new Vue({
 				if(!ok) return false;
 			} return true;
 		},
-		check: function(event) {
+		check: function() {
 			this.ok = true;
 			if(this.username_input.length < 4) {
 				this.username_error = '用户名长度不能小于 4 位';
@@ -72,7 +72,7 @@ var regis_app = new Vue({
 				this.is_username_error = true;
 				this.ok = false;
 			} else if(!this.check_username(this.username_input)) {
-				this.username_error = '用户名包含非法字符';
+				this.username_error = '用户名包含不合法字符';
 				this.is_username_error = true;
 				this.ok = false;
 			} if(this.password_input.length < 6) {
@@ -100,7 +100,7 @@ var regis_app = new Vue({
 						if(res['code'] == 0) {
 							mdui.alert('账号注册成功！\n三秒后跳转至登录页面。', '成功！');
 							setTimeout(function() {
-								location = '/login.html';
+								location = '/login';
 							}, 3000);
 						} else mdui.alert(res['msg'], '出错！');
 					}
