@@ -100,7 +100,7 @@ var regis_app = new Vue({
 						if(res['code'] == 0) {
 							mdui.alert('账号注册成功！\n三秒后跳转至登录页面。', '成功！');
 							setTimeout(function() {
-								location = '/login';
+								location = '/login.html';
 							}, 3000);
 						} else mdui.alert(res['msg'], '出错！');
 					}

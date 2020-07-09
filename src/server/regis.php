@@ -29,7 +29,7 @@
 		$ok = False;
 	} else if(!check_username($user_id)) {
 		$back['code'] = 1;
-		$back['msg'] .= '用户名含有非法字符！' . PHP_EOL;
+		$back['msg'] .= '用户名含有不合法字符！' . PHP_EOL;
 		$ok = False;
 	} $check_username = "SELECT * FROM user WHERE username='$user_id'";
 	$get_username = mysqli_query($conn, $check_username);
