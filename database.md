@@ -1,3 +1,5 @@
+# Database definations
+
 用户：
 
 - 编号: int
@@ -7,7 +9,15 @@
 - 用户组: str
 - 注册时间: date
 
+---
 
+登录状态 auth:
+
+- 编号: int
+- sessionid: str
+- expire time: timestamp
+
+---
 
 稿件：
 
@@ -21,7 +31,7 @@
 - 是否待审核: bool
 - 投稿时间: date
 
-
+---
 
 评分：
 
@@ -31,7 +41,7 @@
 - 分数: int
 - 评分时间: date
 
-
+---
 
 点赞：
 
