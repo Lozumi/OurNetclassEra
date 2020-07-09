@@ -1,5 +1,13 @@
 <?php
-	session_start();
+	$cst = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
+	function check_username($usnm) {
+		global $cst;
+		$Len = strlen($usnm);
+		for($i = 0; $i < $Len; ++ $i) {
+			if(strpos($cst, $usnm[$i]) !== False) { }
+			else return False;
+		} return True;
+	}
 	header('Content-Type: application/json; charset=utf-8');
 	$user_id = isset($_POST['userid']) ? $_POST['userid'] : '';
 	$user_password = isset($_POST['password']) ?  $_POST['password'] : '';
@@ -18,6 +26,10 @@
 	} else if(strlen($user_id) > 15) {
 		$back['code'] = 1;
 		$back['msg'] .= '用户名过长！' . PHP_EOL;
+		$ok = False;
+	} else if(!check_username($user_id)) {
+		$back['code'] = 1;
+		$back['msg'] .= '用户名含有非法字符！' . PHP_EOL;
 		$ok = False;
 	} $check_username = "SELECT * FROM user WHERE username='$user_id'";
 	$get_username = mysqli_query($conn, $check_username);
@@ -46,7 +58,7 @@
 				$back['code'] = 1;
 				$back['msg'] .= '验证码不正确！' . PHP_EOL;
 				$ok = False;
-			} else mysqli_query($conn, "DELETE FROM emailcode WHERE code='$user_code'");
+			} else mysqli_query($conn, "DELETE FROM emailcode WHERE email='$user_email'");
 		}
 	} else {
 		$back['code'] = 1;

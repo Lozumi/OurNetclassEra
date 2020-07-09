@@ -18,7 +18,7 @@
 			<label class="mdui-textfield-label">用户名</label>
 			<input class="mdui-textfield-input" type="text" v-model="username_input" v-on:change="clear_username_error"/>
 			<div class="mdui-textfield-error">{{ username_error }}</div>
-			<div class="mdui-textfield-helper">用户名只能使用大小写英文字母和数字，且需在 4 到 15 位之间</div>
+			<div class="mdui-textfield-helper">用户名只能使用大小写英文字母、数字和下划线，且需在 4 到 15 位之间</div>
 		</div>
 		<div class="mdui-textfield mdui-textfield-floating-label" v-bind:class="{ 'mdui-textfield-invalid': is_password_error }">
 			<i class="mdui-icon material-icons">vpn_key</i>
