@@ -6,7 +6,7 @@
     mysqli_select_db($conn, 'test');
     $get_user = mysqli_query($conn, "SELECT * FROM auth WHERE cookie='$cookie'");
     $back['code'] = 0;
-    $back['name'] = '未登录';
+    $back['name'] = '未登录用户';
     if(mysqli_num_rows($get_user) > 0) {
         if(mysqli_num_rows($get_user) > 1) {
             $back['code'] = -1;
