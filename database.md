@@ -6,8 +6,8 @@
 - username 用户名: str
 - password 密码（md5）: str
 - email 邮箱: str
-- usergrp 用户组: str
-- regdate 注册时间: date
+- usergrp 用户组: str(user, reviewer, admin, blocked)
+- regdate 注册时间: datetime
 
 ---
 
@@ -28,21 +28,21 @@
 
 ---
 
-# 待增加
+稿件 files：
 
-稿件：
-
-- 编号: int
-- 投稿人编号: int
-- 类型: (text/image/video)
-- 文件: str
-- 获赞数: int
-- 平均分: float
-- 是否显示: bool
-- 是否待审核: bool
-- 投稿时间: date
+- id 编号: int
+- userid 投稿人编号: int
+- ftype 类型: (text, image, video)
+- fpath 文件: str
+- likes 获赞数: int
+- scores 平均分: float
+- isshow 是否显示: bool
+- iswait 是否待审核: bool
+- uptime 投稿时间: datetime
 
 ---
+
+# 待增加
 
 评分：
 
@@ -50,7 +50,7 @@
 - 评分人编号: int
 - 评分稿件编号: int
 - 分数: int
-- 评分时间: date
+- 评分时间: datetime
 
 ---
 
@@ -59,4 +59,4 @@
 - 编号: int
 - 点赞人编号: int
 - 点赞稿件编号: int
-- 点赞时间: date
+- 点赞时间: datetime
