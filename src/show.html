@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>作品展示</title>
+	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css"/>
+	<script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
+	<script src="/js/vue.js"></script>
+	<script src="/js/jquery.min.js"></script>
+</head>
+<body class="mdui-theme-accent-blue mdui-appbar-with-toolbar">
+	<div class="mdui-container" id="show_app">
+		<div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-toolbar-hide">
+			<div class="mdui-toolbar mdui-color-indigo">
+				<button class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '主页'}" onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
+				<a href="javascript:;" class="mdui-typo-headline">作品展示</a>
+				<div class="mdui-toolbar-spacer"></div>
+				<span class="mdui-typo-title">欢迎你，{{ username }}！</span>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="location='/login.html'" v-show="not_login()">登录</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white" onclick="location='/regis.html'" v-show="not_login()">注册</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white" onclick="location='/upload.html'" v-show="is_login()">投稿</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" v-on:click="logout" v-show="is_login()">注销</button>
+			</div>
+		</div>
+		<div class="mdui-center" style="max-width: 1280px;">
+			<div class="mdui-typo">
+				<h1 style="text-align: center;">施工中哦~</h1>
+			</div>
+		</div>
+	</div>
+	<script src="/show.js"></script>
+</body>
+</html>

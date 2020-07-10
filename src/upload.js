@@ -3,7 +3,6 @@ var upload_app = new Vue({
 	data: {
 		userid: 0,
 		username: '',
-		now_cs: 1,
 		article_title: '',
 		article_text: '',
 		imageURL: '/upload.png',
@@ -51,24 +50,6 @@ var upload_app = new Vue({
 					} else mdui.alert('好像有点问题...', '出错！');
 				}
 			});
-		},
-		select_article: function() {
-			this.now_cs = 0;
-		},
-		select_picture: function() {
-			this.now_cs = 1;
-		},
-		select_video: function() {
-			this.now_cs = 2;
-		},
-		article_selected: function() {
-			return this.now_cs == 0;
-		},
-		picture_selected: function() {
-			return this.now_cs == 1;
-		},
-		video_selected: function() {
-			return this.now_cs == 2;
 		},
 		pic_file_change: function() {
 			let file = this.$refs.pic_inputer.files[0];

@@ -19,22 +19,22 @@
 				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" v-on:click="logout" v-show="is_login()">注销</button>
 			</div>
 			<div class="mdui-tab mdui-color-indigo mdui-tab-full-width" mdui-tab>
-				<a href="#article" class="mdui-ripple" v-on:click="select_article">
+				<a href="#article" class="mdui-ripple">
 					<i class="mdui-icon material-icons">description</i>
 					<label>文章</label>
 				</a>
-				<a href="#picture" class="mdui-ripple mdui-tab-active" v-on:click="select_picture">
+				<a href="#picture" class="mdui-ripple mdui-tab-active">
 					<i class="mdui-icon material-icons">image</i>
 					<label>图片</label>
 				</a>
-				<a href="#video" class="mdui-ripple" v-on:click="select_video">
+				<a href="#video" class="mdui-ripple">
 					<i class="mdui-icon material-icons">videocam</i>
 					<label>视频</label>
 				</a>
 			</div>
 		</div>
 		<div class="mdui-center" style="max-width: 1280px;">
-			<div v-show="article_selected()">
+			<div id="article">
 				<div class="mdui-textfield mdui-textfield-floating-label">
 				  <label class="mdui-textfield-label">标题</label>
 				  <input class="mdui-textfield-input" type="text" v-model="article_title"/>
@@ -44,9 +44,16 @@
 				  <textarea class="mdui-textfield-input" style="min-height: 480px;" v-model="article_text"></textarea>
 				</div>
 				<br/>
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center">提交</button>
+				<div class="mdui-container">
+					<div class="mdui-col-xs-6">
+						<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-center">预览</button>
+					</div>
+					<div class="mdui-col-xs-6">
+						<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center">提交</button>
+					</div>
+				</div>
 			</div>
-			<div v-show="picture_selected()">
+			<div id="picture">
 				<br/>
 				<img class="mdui-center" style="max-width: 1280px;" v-bind:src="imageURL"/>
 				<br/>
@@ -58,7 +65,7 @@
 				<br/>
 				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center" v-on:click="upload_img">提交</button>
 			</div>
-			<div v-show="video_selected()">
+			<div id="video">
 				<div class="mdui-typo">
 					<h1 style="text-align: center;">请联系 Nico 投稿你的视频稿件~</h1>
 					<div style="text-align: center;">

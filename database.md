@@ -34,8 +34,9 @@
 - userid 投稿人编号: int
 - ftype 类型: (text, image, video)
 - fpath 文件: str
+- fdes 简介: str
 - likes 获赞数: int
-- scores 平均分: float
+- scores 平均分: double
 - isshow 是否显示: bool
 - iswait 是否待审核: bool
 - uptime 投稿时间: datetime

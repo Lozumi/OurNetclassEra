@@ -7,6 +7,12 @@
 	<script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
 	<script src="/js/vue.js"></script>
 	<script src="/js/jquery.min.js"></script>
+	<style type="text/css">
+		#data_dis {
+			display: inline;
+			margin: 5px;
+		}
+	</style>
 </head>
 <body class="mdui-theme-accent-blue mdui-appbar-with-toolbar mdui-appbar-with-tab-larger">
 	<div class="mdui-container" id="app">
@@ -22,23 +28,128 @@
 				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" v-on:click="logout" v-show="is_login()">注销</button>
 			</div>
 			<div class="mdui-tab mdui-color-indigo mdui-tab-full-width" mdui-tab>
-				<a href="#article" class="mdui-ripple" v-on:click="select_article">
+				<a href="#article" class="mdui-ripple">
 					<i class="mdui-icon material-icons">description</i>
 					<label>文章</label>
 				</a>
-				<a href="#picture" class="mdui-ripple mdui-tab-active" v-on:click="select_picture">
+				<a href="#picture" class="mdui-ripple mdui-tab-active">
 					<i class="mdui-icon material-icons">image</i>
 					<label>图片</label>
 				</a>
-				<a href="#video" class="mdui-ripple" v-on:click="select_video">
+				<a href="#video" class="mdui-ripple">
 					<i class="mdui-icon material-icons">videocam</i>
 					<label>视频</label>
 				</a>
 			</div>
 		</div>
 		<div class="mdui-center" style="max-width: 1280px;">
-			<div class="mdui-typo">
-				<h1 style="text-align: center;">主页</h1>
+			<div id="article">
+				<div class="mdui-tab" mdui-tab>
+					<a href="#latest_article" class="mdui-ripple">最新</a>
+					<a href="#highest_article" class="mdui-ripple">评分最高</a>
+					<a href="#random_article" class="mdui-ripple">随机</a>
+				</div>
+				<div id="latest_article">
+					咕咕咕
+				</div>
+				<div id="highest_article">
+					咕咕咕
+				</div>
+				<div id="random_article">
+					咕咕咕
+				</div>
+			</div>
+			<div id="picture">
+				<div class="mdui-tab" mdui-tab>
+					<a href="#latest_picture" class="mdui-ripple">最新</a>
+					<a href="#highest_picture" class="mdui-ripple">评分最高</a>
+					<a href="#random_picture" class="mdui-ripple" v-on:click="refresh_picture">随机 10 张</a>
+				</div>
+				<div style="column-count: 4;" id="latest_picture">
+					<div style="break-inside: avoid; margin-bottom: 10px;" class="mdui-card" v-for="item in get_info('image', 'uptime', 0)">
+						<div class="mdui-card-header">
+							<i class="mdui-icon material-icons mdui-card-header-avatar">account_box</i>
+							<div class="mdui-card-header-title">{{ item.username }}</div>
+						</div>
+						<div class="mdui-card-media">
+							<img v-bind:src="item.fpath"/>
+						</div>
+						<div class="mdui-card-content">{{ item.fdes }}</div>
+						<div class="mdui-card-actions">
+							<div id="data_dis">
+								<i class="mdui-icon material-icons">favorite</i>
+								{{ item.likes }}
+							</div>
+							<div id="data_dis">
+								<i class="mdui-icon material-icons">date_range</i>
+								{{ item.uptime }}
+							</div>
+							<button style="margin-top: 10px;" class="mdui-btn mdui-ripple mdui-center" v-bind:onclick="'location=\'/show.html?id='+item.id+'\''">详情</button>
+						</div>
+					</div>
+				</div>
+				<div style="column-count: 4;" id="highest_picture">
+					<div style="break-inside: avoid; margin-bottom: 10px;" class="mdui-card" v-for="item in get_info('image', 'likes', 0)">
+						<div class="mdui-card-header">
+							<i class="mdui-icon material-icons mdui-card-header-avatar">account_box</i>
+							<div class="mdui-card-header-title">{{ item.username }}</div>
+						</div>
+						<div class="mdui-card-media">
+							<img v-bind:src="item.fpath"/>
+						</div>
+						<div class="mdui-card-content">{{ item.fdes }}</div>
+						<div class="mdui-card-actions">
+							<div id="data_dis">
+								<i class="mdui-icon material-icons">favorite</i>
+								{{ item.likes }}
+							</div>
+							<div id="data_dis">
+								<i class="mdui-icon material-icons">date_range</i>
+								{{ item.uptime }}
+							</div>
+							<button style="margin-top: 10px;" class="mdui-btn mdui-ripple mdui-center" v-bind:onclick="'location=\'/show.html?id='+item.id+'\''">详情</button>
+						</div>
+					</div>
+				</div>
+				<div style="column-count: 4;" id="random_picture">
+					<div style="break-inside: avoid; margin-bottom: 10px;" class="mdui-card" v-for="item in random_picture">
+						<div class="mdui-card-header">
+							<i class="mdui-icon material-icons mdui-card-header-avatar">account_box</i>
+							<div class="mdui-card-header-title">{{ item.username }}</div>
+						</div>
+						<div class="mdui-card-media">
+							<img v-bind:src="item.fpath"/>
+						</div>
+						<div class="mdui-card-content">{{ item.fdes }}</div>
+						<div class="mdui-card-actions">
+							<div id="data_dis">
+								<i class="mdui-icon material-icons">favorite</i>
+								{{ item.likes }}
+							</div>
+							<div id="data_dis">
+								<i class="mdui-icon material-icons">date_range</i>
+								{{ item.uptime }}
+							</div>
+							<button style="margin-top: 10px;" class="mdui-btn mdui-ripple mdui-center" v-bind:onclick="'location=\'/show.html?id='+item.id+'\''">详情</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="video">
+				<div class="mdui-tab" mdui-tab>
+					<a href="#latest_video" class="mdui-ripple">最新</a>
+					<a href="#highest_video" class="mdui-ripple">评分最高</a>
+					<a href="#random_video" class="mdui-ripple">随机</a>
+				</div>
+				<div id="latest_video">
+					咕咕咕
+				</div>
+				<div id="highest_video">
+					咕咕咕
+				</div>
+				<div id="random_video">
+					咕咕咕
+				</div>
 			</div>
 		</div>
 	</div>
