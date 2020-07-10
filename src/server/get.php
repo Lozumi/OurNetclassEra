@@ -38,5 +38,6 @@
 		$back[$i] = $nowrow;
 	} mysqli_close($conn);
 	if($get_random) shuffle($back);
+	if($fnum > $rownum) $fnum = $rownum;
 	echo json_encode(array_slice($back, 0, $fnum));
 ?>
