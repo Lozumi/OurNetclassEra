@@ -7,16 +7,26 @@
 	<script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
 	<script src="/js/vue.js"></script>
 	<script src="/js/jquery.min.js"></script>
+	<style type="text/css">
+		html, body {
+            height: 80%;
+		}
+		#login_app {
+			position: relative;
+			top: 35%;
+			max-width: 480px;
+		}
+	</style>
 </head>
 <body class="mdui-theme-accent-blue">
-	<div class="mdui-container" id="login_app" style="max-width: 640px;">
+	<div class="mdui-container" id="login_app">
 		<div class="mdui-typo">
 			<h1 style="text-align: center;">
-				<button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple" mdui-tooltip="{content: '主页'}" onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
+				<button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple" mdui-tooltip="{content: '主页', position: 'left'}" onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
 				系统登录
 			</h1>
 		</div>
-		<div class="mdui-textfield mdui-textfield-floating-label">
+		<div class="mdui-textfield mdui-textfield-floating-label mdui-m-y-2">
 			<i class="mdui-icon material-icons">account_circle</i>
 			<label class="mdui-textfield-label">用户名</label>
 			<input class="mdui-textfield-input" type="text" v-model="username_input"/>
@@ -27,7 +37,7 @@
 			<input class="mdui-textfield-input" type="password" v-model="password_input"/>
 		</div>
 		<br/>
-		<div class="mdui-container">
+		<div class="mdui-container mdui-m-y-5">
 			<div class="mdui-col-xs-6">
 				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center" v-on:click="get_login">登录</button>
 			</div>

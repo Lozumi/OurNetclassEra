@@ -13,7 +13,8 @@ var regis_app = new Vue({
 		code_input: '',
 		code_message: '',
 		re_check_email: /.+@qq\.com/,	
-		ok: false
+		ok: false,
+		restime: 0
 	},
 	created: function() {
 		$.ajax({
@@ -43,10 +44,19 @@ var regis_app = new Vue({
 		clear_code_error: function() {
 			this.is_code_error = false;
 		},
+		cant_send: function() {
+			return this.restime > 0;
+		},
+		time_dec: function() {
+			if(this.restime == 0) return;
+			-- this.restime;
+			setTimeout(this.time_dec, 1000);
+		},
 		send_email: function() {
 			if(!this.re_check_email.test(this.email_input))
 				this.is_email_error = true;
 			else {
+				var has_send = false;
 				$.ajax({
 					async: false,
 					type: 'post',
@@ -55,12 +65,17 @@ var regis_app = new Vue({
 						'address': this.email_input
 					},
 					success: function(res) {
-						if(res['code'] == 0)
+						if(res['code'] == 0) {
 							mdui.alert('邮件已发送！', '提示');
-						else mdui.alert(res['msg'], '出错！');
+							has_send = true;
+						} else mdui.alert(res['msg'], '出错！');
 					}
 				});
-				this.code_message = '请输入收到的验证码';
+				if(has_send) {
+					this.code_message = '请输入收到的验证码';
+					this.restime = 60;
+					this.time_dec();
+				}
 			}
 		},
 		check_username: function(username) {

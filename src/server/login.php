@@ -23,9 +23,9 @@
 				$cookie = md5(md5(rand()) . $user);
         		$expire = time() + 36000;
 				setcookie('SESSIONID', $cookie, $expire, '/');
-				$is_login = mysqli_query($conn, "SELECT * FROM auth WHERE userid='$user'");
+				$is_login = mysqli_query($conn, "SELECT * FROM auth WHERE userid=$user");
 				if(mysqli_num_rows($is_login) != 0)
-					mysqli_query($conn, "UPDATE auth SET cookie='$cookie', expire='$expire' WHERE userid='$user'");
+					mysqli_query($conn, "UPDATE auth SET cookie='$cookie', expire=$expire WHERE userid=$user");
 				else mysqli_query($conn, "INSERT INTO auth (userid, cookie, expire) VALUES ($user, '$cookie', $expire)");
 			}
 		}

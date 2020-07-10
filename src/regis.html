@@ -7,12 +7,22 @@
 	<script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
 	<script src="/js/vue.js"></script>
 	<script src="/js/jquery.min.js"></script>
+	<style type="text/css">
+		html, body {
+            height: 80%;
+		}
+		#regis_app {
+			position: relative;
+			top: 25%;
+			max-width: 640px;
+		}
+	</style>
 </head>
 <body class="mdui-theme-accent-blue">
-	<div class="mdui-container" id="regis_app" style="max-width: 640px;">
+	<div class="mdui-container" id="regis_app">
 		<div class="mdui-typo">
 			<h1 style="text-align: center;">
-				<button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple" mdui-tooltip="{content: '主页'}" onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
+				<button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple" mdui-tooltip="{content: '主页', position: 'left'}" onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
 				系统注册
 			</h1>
 		</div>
@@ -40,7 +50,8 @@
 					<div class="mdui-textfield-helper">仅允许使用 QQ 邮箱</div>
 				</div>
 				<div class="mdui-col-xs-3">
-					<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center" v-on:click="send_email">发送验证码</button>
+					<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center" v-on:click="send_email" v-if="!cant_send()">发送验证码</button>
+					<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center" v-if="cant_send()" disabled>重新发送({{ restime }})</button>
 				</div>
 			</div>
 		</div>
