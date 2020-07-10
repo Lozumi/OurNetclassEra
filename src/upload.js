@@ -3,8 +3,7 @@ var upload_app = new Vue({
 	data: {
 		now_cs: 1,
 		article_title: '',
-		article_text: '',
-		
+		article_text: ''
 	},
 	methods: {
 		select_article: function() {
