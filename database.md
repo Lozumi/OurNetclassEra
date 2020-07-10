@@ -1,28 +1,39 @@
-# Database definations
+# 已完成
 
-用户：
+用户 user：
 
-- 编号: int
-- 用户名: str
-- 密码（md5）: str
-- 邮箱: str
-- 用户组: str
-- 注册时间: date
+- id 编号: int
+- username 用户名: str
+- password 密码（md5）: str
+- email 邮箱: str
+- usergrp 用户组: str
+- regdate 注册时间: date
+
+---
+
+登录状态 auth：
+
+- id 编号: int
+- userid 用户编号: int
+- cookie: str
+- expire 过期时间: int
 
 ---
 
-登录状态 auth:
+邮件验证码 emailcode：
 
-- 编号: int
-- sessionid: str
-- expire time: timestamp
+- id 编号: int
+- email 邮箱: str
+- code 验证码: code
 
 ---
+
+# 待增加
 
 稿件：
 
 - 编号: int
-- 投稿人: int
+- 投稿人编号: int
 - 类型: (text/image/video)
 - 文件: str
 - 获赞数: int
@@ -36,8 +47,8 @@
 评分：
 
 - 编号: int
-- 评分人: int
-- 评分稿件: int
+- 评分人编号: int
+- 评分稿件编号: int
 - 分数: int
 - 评分时间: date
 
@@ -46,6 +57,6 @@
 点赞：
 
 - 编号: int
-- 点赞人: int
-- 点赞稿件: int
+- 点赞人编号: int
+- 点赞稿件编号: int
 - 点赞时间: date
