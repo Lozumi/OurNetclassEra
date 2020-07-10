@@ -8,21 +8,17 @@
 	<script src="/js/vue.js"></script>
 	<script src="/js/jquery.min.js"></script>
 </head>
-<body class="mdui-theme-accent-blue mdui-appbar-with-toolbar">
+<body class="mdui-theme-accent-blue mdui-appbar-with-toolbar mdui-appbar-with-tab-larger">
 	<div class="mdui-container" id="upload_app">
-		<div class="mdui-appbar mdui-appbar-fixed">
+		<div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-toolbar-hide">
 			<div class="mdui-toolbar mdui-color-indigo">
 				<button class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '主页'}" onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
+				<a href="javascript:;" class="mdui-typo-headline">稿件上传</a>
 				<div class="mdui-toolbar-spacer"></div>
 				<span class="mdui-typo-title">欢迎你，{{ username }}！</span>
 				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" v-on:click="logout" v-show="is_login()">注销</button>
 			</div>
-		</div>
-		<div class="mdui-center" style="max-width: 640px">
-			<div class="mdui-typo">
-				<h1 style="text-align: center;">稿件上传</h1>
-			</div>
-			<div class="mdui-tab mdui-tab-full-width" mdui-tab>
+			<div class="mdui-tab mdui-color-indigo mdui-tab-full-width" mdui-tab>
 				<a href="#article" class="mdui-ripple" v-on:click="select_article">
 					<i class="mdui-icon material-icons">description</i>
 					<label>文章</label>
@@ -36,6 +32,8 @@
 					<label>视频</label>
 				</a>
 			</div>
+		</div>
+		<div class="mdui-center" style="max-width: 1280px;">
 			<div v-show="article_selected()">
 				<div class="mdui-textfield mdui-textfield-floating-label">
 				  <label class="mdui-textfield-label">标题</label>
@@ -43,20 +41,22 @@
 				</div>
 				<div class="mdui-textfield">
 				  <label class="mdui-textfield-label">正文</label>
-				  <textarea class="mdui-textfield-input" style="min-height: 320px;" v-model="article_text"></textarea>
+				  <textarea class="mdui-textfield-input" style="min-height: 480px;" v-model="article_text"></textarea>
 				</div>
 				<br/>
 				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center">提交</button>
 			</div>
 			<div v-show="picture_selected()">
 				<br/>
-				<div style="text-align: center;">
-					<a href="javascript:;" style="display: inline-block;" v-on:click="upload_img">
-						<img src="/upload.png"/>
-					</a>
+				<img class="mdui-center" style="max-width: 1280px;" v-bind:src="imageURL"/>
+				<br/>
+				<input class="mdui-center" type="file" accept="image/*" v-on:change="pic_file_change" ref="pic_inputer"/>
+				<br/>
+				<div class="mdui-progress">
+					<div class="mdui-progress-determinate" v-bind:style="{ width: pic_loading + '%' }"></div>
 				</div>
 				<br/>
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center">提交</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center" v-on:click="upload_img">提交</button>
 			</div>
 			<div v-show="video_selected()">
 				<div class="mdui-typo">
