@@ -11,10 +11,10 @@ var login_app = new Vue({
 			url: '/server/auth.php',
 			success: function(res) {
 				if(res['code'] > 0) {
-					mdui.alert('已经登录！三秒后跳转至主页。', '提示');
+					mdui.alert('已经登录！一秒后跳转至主页。', '提示');
 					setTimeout(function() {
 						location = '/index.html';
-					}, 3000);
+					}, 1000);
 				}
 			}
 		});
@@ -35,10 +35,10 @@ var login_app = new Vue({
 					},
 					success: function(res) {
 						if(res['code'] == 0) {
-							mdui.alert('登录成功！三秒后跳转至主页。', '成功！');
+							mdui.alert('登录成功！一秒后跳转至主页。', '成功！');
 							setTimeout(function() {
 								location = '/index.html';
-							}, 3000);
+							}, 1000);
 						} else mdui.alert(res['msg'], '出错！');
 					}
 				});

@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>系统注册</title>
-	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css">
+	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css"/>
 	<script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
 	<script src="/js/vue.js"></script>
 	<script src="/js/jquery.min.js"></script>
@@ -58,7 +58,7 @@
 		<div class="mdui-textfield mdui-textfield-floating-label" v-bind:class="{ 'mdui-textfield-invalid': is_code_error }">
 			<i class="mdui-icon material-icons">code</i>
 			<label class="mdui-textfield-label">验证码</label>
-			<input class="mdui-textfield-input" type="text" v-model="code_input" v-on:change="clear_code_error"/>
+			<input class="mdui-textfield-input" type="text" v-model="code_input" v-on:change="clear_code_error" v-on:keyup.enter="check"/>
 			<div class="mdui-textfield-error">验证码不能为空</div>
 			<div class="mdui-textfield-helper">{{ code_message }}</div>
 		</div>

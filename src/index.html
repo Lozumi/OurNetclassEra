@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>主页</title>
-	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css">
+	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css"/>
 	<script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
 	<script src="/js/vue.js"></script>
 	<script src="/js/jquery.min.js"></script>
@@ -17,6 +17,7 @@
 				<span class="mdui-typo-title">欢迎你，{{ username }}！</span>
 				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="location='/login.html'" v-show="not_login()">登录</button>
 				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white" onclick="location='/regis.html'" v-show="not_login()">注册</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white" onclick="location='/upload.html'" v-show="is_login()">投稿</button>
 				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" v-on:click="logout" v-show="is_login()">注销</button>
 			</div>
 		</div>

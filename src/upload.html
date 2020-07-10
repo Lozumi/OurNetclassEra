@@ -4,60 +4,68 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>稿件上传</title>
 	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css"/>
-	<link rel="stylesheet" href="/editormd/css/editormd.css"/>
 	<script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
 	<script src="/js/vue.js"></script>
 	<script src="/js/jquery.min.js"></script>
-	<script src="/editormd/editormd.min.js"></script>
 </head>
-<body class="mdui-theme-accent-blue">
-	<div class="mdui-container" id="upload_app" style="max-width: 640px;">
-		<div class="mdui-typo">
-			<h1 style="text-align: center;">稿件上传</h1>
-		</div>
-		<div class="mdui-tab mdui-tab-full-width" mdui-tab>
-			<a href="#article" class="mdui-ripple" v-on:click="select_article">
-				<i class="mdui-icon material-icons">description</i>
-				<label>文章</label>
-			</a>
-			<a href="#picture" class="mdui-ripple mdui-tab-active" v-on:click="select_picture">
-				<i class="mdui-icon material-icons">image</i>
-				<label>图片</label>
-			</a>
-			<a href="#video" class="mdui-ripple" v-on:click="select_video">
-				<i class="mdui-icon material-icons">videocam</i>
-				<label>视频</label>
-			</a>
-		</div>
-		<div v-show="article_selected()">
-			<div class="mdui-textfield mdui-textfield-floating-label">
-			  <label class="mdui-textfield-label">标题</label>
-			  <input class="mdui-textfield-input" type="text" v-model="article_title"/>
+<body class="mdui-theme-accent-blue mdui-appbar-with-toolbar">
+	<div class="mdui-container" id="upload_app">
+		<div class="mdui-appbar mdui-appbar-fixed">
+			<div class="mdui-toolbar mdui-color-indigo">
+				<button class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '主页'}" onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
+				<div class="mdui-toolbar-spacer"></div>
+				<span class="mdui-typo-title">欢迎你，{{ username }}！</span>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" v-on:click="logout" v-show="is_login()">注销</button>
 			</div>
-			<div class="mdui-textfield">
-			  <label class="mdui-textfield-label">正文</label>
-			  <textarea class="mdui-textfield-input" style="min-height: 320px;" v-model="article_text"></textarea>
-			</div>
-			<br/>
-			<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center">提交</button>
 		</div>
-		<div v-show="picture_selected()">
-			<br/>
-			<div style="text-align: center;">
-				<a href="javascript:;" style="display: inline-block;" v-on:click="upload_img">
-					<img src="/upload.png"/>
+		<div class="mdui-center" style="max-width: 640px">
+			<div class="mdui-typo">
+				<h1 style="text-align: center;">稿件上传</h1>
+			</div>
+			<div class="mdui-tab mdui-tab-full-width" mdui-tab>
+				<a href="#article" class="mdui-ripple" v-on:click="select_article">
+					<i class="mdui-icon material-icons">description</i>
+					<label>文章</label>
+				</a>
+				<a href="#picture" class="mdui-ripple mdui-tab-active" v-on:click="select_picture">
+					<i class="mdui-icon material-icons">image</i>
+					<label>图片</label>
+				</a>
+				<a href="#video" class="mdui-ripple" v-on:click="select_video">
+					<i class="mdui-icon material-icons">videocam</i>
+					<label>视频</label>
 				</a>
 			</div>
-			<br/>
-			<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center">提交</button>
-		</div>
-		<div v-show="video_selected()">
-			<div class="mdui-typo">
-				<h1 style="text-align: center;">请联系 Nico 投稿你的视频稿件~</h1>
+			<div v-show="article_selected()">
+				<div class="mdui-textfield mdui-textfield-floating-label">
+				  <label class="mdui-textfield-label">标题</label>
+				  <input class="mdui-textfield-input" type="text" v-model="article_title"/>
+				</div>
+				<div class="mdui-textfield">
+				  <label class="mdui-textfield-label">正文</label>
+				  <textarea class="mdui-textfield-input" style="min-height: 320px;" v-model="article_text"></textarea>
+				</div>
+				<br/>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center">提交</button>
+			</div>
+			<div v-show="picture_selected()">
+				<br/>
 				<div style="text-align: center;">
-					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2232068231&site=qq&menu=yes">
-						<img border="0" src="http://wpa.qq.com/pa?p=2:2232068231:53" alt="请联系 Nico 投稿你的视频稿件~" title="请联系 Nico 投稿你的视频稿件~"/>
+					<a href="javascript:;" style="display: inline-block;" v-on:click="upload_img">
+						<img src="/upload.png"/>
 					</a>
+				</div>
+				<br/>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center">提交</button>
+			</div>
+			<div v-show="video_selected()">
+				<div class="mdui-typo">
+					<h1 style="text-align: center;">请联系 Nico 投稿你的视频稿件~</h1>
+					<div style="text-align: center;">
+						<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2232068231&site=qq&menu=yes">
+							<img border="0" src="http://wpa.qq.com/pa?p=2:2232068231:53" alt="请联系 Nico 投稿你的视频稿件~" title="请联系 Nico 投稿你的视频稿件~"/>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
