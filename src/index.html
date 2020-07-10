@@ -5,8 +5,20 @@
 	<title>主页</title>
 	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css">
 	<script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
+	<script src="/js/vue.js"></script>
+	<script src="/js/jquery.min.js"></script>
 </head>
 <body class="mdui-theme-accent-blue">
-	我是主页！
+	<div class="mdui-container" id="app" style="max-width: 1280px;">
+		<div class="mdui-typo">
+			<h1 style="text-align: center;">主页</h1>
+			<p style="text-align: center;">欢迎你，{{ username }}！</p>
+		</div>
+		<div style="text-align: center;">
+			<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="location='/login.html'">登录</button>
+			<button class="mdui-btn mdui-btn-raised mdui-ripple" onclick="location='/regis.html'">注册</button>
+		</div>
+	</div>
+	<script src="/index.js"></script>
 </body>
 </html>

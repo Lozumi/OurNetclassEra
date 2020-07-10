@@ -15,6 +15,21 @@ var regis_app = new Vue({
 		re_check_email: /.+@qq\.com/,	
 		ok: false
 	},
+	created: function() {
+		$.ajax({
+			async: false,
+			type: 'post',
+			url: '/server/auth.php',
+			success: function(res) {
+				if(res['code'] > 0) {
+					mdui.alert('已经登录！三秒后跳转至主页。', '提示');
+					setTimeout(function() {
+						location = '/index.html';
+					}, 3000);
+				}
+			}
+		});
+	},
 	methods: {
 		clear_username_error: function() {
 			this.is_username_error = false;
@@ -98,7 +113,7 @@ var regis_app = new Vue({
 					},
 					success: function(res) {
 						if(res['code'] == 0) {
-							mdui.alert('账号注册成功！\n三秒后跳转至登录页面。', '成功！');
+							mdui.alert('账号注册成功！三秒后跳转至登录页面。', '成功！');
 							setTimeout(function() {
 								location = '/login.html';
 							}, 3000);

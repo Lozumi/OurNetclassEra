@@ -3,10 +3,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>稿件上传</title>
-	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css">
+	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css"/>
+	<link rel="stylesheet" href="/editormd/css/editormd.css"/>
 	<script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
 	<script src="/js/vue.js"></script>
 	<script src="/js/jquery.min.js"></script>
+	<script src="/editormd/editormd.min.js"></script>
 </head>
 <body class="mdui-theme-accent-blue">
 	<div class="mdui-container" id="upload_app" style="max-width: 640px;">
@@ -32,9 +34,14 @@
 			  <label class="mdui-textfield-label">标题</label>
 			  <input class="mdui-textfield-input" type="text" v-model="article_title"/>
 			</div>
-			<div class="mdui-textfield">
+			<!-- <div class="mdui-textfield">
 			  <label class="mdui-textfield-label">正文</label>
 			  <textarea class="mdui-textfield-input" style="min-height: 320px;" v-model="article_text"></textarea>
+			</div> -->
+			<div id="main-text">
+				<textarea>
+					### 测试
+				</textarea>
 			</div>
 			<br/>
 			<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center">提交</button>
@@ -61,5 +68,12 @@
 		</div>
 	</div>
 	<script src="/upload.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var editor = editormd("main-text", {
+				path: "/editormd/lib/"
+			});
+		});
+	</script>
 </body>
 </html>
