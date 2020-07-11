@@ -1,6 +1,6 @@
 <?php
 	require('basic_auth.php');
-	$allow_type = array('jpg', 'jpeg', 'png', 'gif');
+	$allow_type = array('jpg', 'jpeg', 'png', 'gif', 'jfif', 'bmp');
 	$cst = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     function rand_str() {
         global $cst;
