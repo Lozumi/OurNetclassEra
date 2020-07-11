@@ -3,7 +3,8 @@ var app = new Vue({
 	data: {
 		userid: 0,
 		username: '',
-		random_picture: []
+		random_picture: [],
+		col_count: 4
 	},
 	created: function() {
 		var user_id = 0;
@@ -20,6 +21,19 @@ var app = new Vue({
 		this.userid = user_id;
 		this.username = user_name;
 		this.refresh_picture();
+		const _this = this;
+		var get_col = function() {
+			var aspect = window.innerWidth / window.innerHeight;
+			_this.col_count = 4;
+			if(aspect <= 1.3)
+				_this.col_count = 3;
+			if(aspect <= 1)
+				_this.col_count = 2;
+			if(aspect <= 0.75)
+				_this.col_count = 1;
+		};
+		window.onresize = get_col;
+		get_col();
 	},
 	methods: {
 		not_login: function() {
@@ -61,23 +75,6 @@ var app = new Vue({
 				}
 			});
 			return items;
-		}
-	},
-	watch: {
-		now_cs: function() {
-			switch(this.now_cs) {
-				case 0:
-					console.log('Article!');
-					break;
-				case 1:
-					console.log('Picture!');
-					break;
-				case 2:
-					console.log('Video!');
-					break;
-				default:
-					console.log('Error!');
-			}
 		}
 	}
 });
