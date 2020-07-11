@@ -3,7 +3,8 @@ var app = new Vue({
 	data: {
 		userid: 0,
 		username: '',
-		random_picture: []
+		random_picture: [],
+		col_count: 4
 	},
 	created: function() {
 		var user_id = 0;
@@ -81,3 +82,11 @@ var app = new Vue({
 		}
 	}
 });
+
+onresize = onload = function () {
+	var aspect = window.innerWidth / window.innerHeight;
+	if (aspect > 1.3) app.col_count = 4;
+	else if (aspect > 1) app.col_count = 3;
+	else if (aspect > 0.75) app.col_count = 2;
+	else app.col_count = 1;
+}
