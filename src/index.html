@@ -65,7 +65,7 @@
 					<a href="#highest_picture" class="mdui-ripple">评分最高</a>
 					<a href="#random_picture" class="mdui-ripple" v-on:click="refresh_picture">随机 10 张</a>
 				</div>
-				<div v-bind:style="{'column-count':col_count}" id="latest_picture">
+				<div style="column-count: 4;" id="latest_picture">
 					<div style="break-inside: avoid; margin-bottom: 10px;" class="mdui-card" v-for="item in get_info('image', 'uptime', 0)">
 						<div class="mdui-card-header">
 							<i class="mdui-icon material-icons mdui-card-header-avatar">account_box</i>
@@ -88,7 +88,7 @@
 						</div>
 					</div>
 				</div>
-				<div v-bind:style="{'column-count':col_count}" id="highest_picture">
+				<div style="column-count: 4;" id="highest_picture">
 					<div style="break-inside: avoid; margin-bottom: 10px;" class="mdui-card" v-for="item in get_info('image', 'likes', 0)">
 						<div class="mdui-card-header">
 							<i class="mdui-icon material-icons mdui-card-header-avatar">account_box</i>
@@ -111,7 +111,7 @@
 						</div>
 					</div>
 				</div>
-				<div v-bind:style="{'column-count':col_count}" id="random_picture">
+				<div style="column-count: 4;" id="random_picture">
 					<div style="break-inside: avoid; margin-bottom: 10px;" class="mdui-card" v-for="item in random_picture">
 						<div class="mdui-card-header">
 							<i class="mdui-icon material-icons mdui-card-header-avatar">account_box</i>

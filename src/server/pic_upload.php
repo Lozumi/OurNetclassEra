@@ -1,5 +1,6 @@
 <?php
 	require('basic_auth.php');
+	require('pic_compress.php');
 	$allow_type = array('jpg', 'jpeg', 'png', 'gif', 'jfif', 'bmp');
 	$cst = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     function rand_str() {
@@ -29,15 +30,17 @@
 		$back['code'] = 1;
 		$back['msg'] = '请上传一个图片文件！';
 	} else {
-		$new_name = rand_str() . '.' . $temp;
-		move_uploaded_file($_FILES['picfile']['tmp_name'], '../files/' . $new_name);
+		$new_name = rand_str();
+		$new_Name = $new_name . '.' . $temp;
+		move_uploaded_file($_FILES['picfile']['tmp_name'], '../files/' . $new_Name);
+		imgcompress('../files/' . $new_Name, '../slt/' . $new_name);
 		$conn = mysqli_connect('localhost:3308', 'root', '');
 		mysqli_query($conn, 'set names utf8');
 		mysqli_select_db($conn, 'test');
 		mysqli_query($conn, "INSERT INTO files".
-							"(userid, ftype, fpath, likes, scores, isshow, iswait, uptime)".
+							"(userid, ftype, fname, fend, fdes, likes, scores, isshow, iswait, uptime)".
 							"VALUES".
-							"($userid, 'image', '$new_name', 0, 0.0, false, true, NOW())");
+							"($userid, 'image', '$new_name', '$temp', '', 0, 0.0, false, true, NOW())");
 		mysqli_close($conn);
 	} echo json_encode($back);
 ?>

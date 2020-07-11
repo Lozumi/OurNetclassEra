@@ -3,17 +3,16 @@ var app = new Vue({
 	data: {
 		userid: 0,
 		username: '',
-		random_picture: [],
-		col_count: 4
+		random_picture: []
 	},
-	created: function () {
+	created: function() {
 		var user_id = 0;
 		var user_name = '';
 		$.ajax({
 			async: false,
 			type: 'post',
 			url: '/server/auth.php',
-			success: function (res) {
+			success: function(res) {
 				user_id = res['code'];
 				user_name = res['name'];
 			}
@@ -23,30 +22,30 @@ var app = new Vue({
 		this.refresh_picture();
 	},
 	methods: {
-		not_login: function () {
+		not_login: function() {
 			return this.userid == 0;
 		},
-		is_login: function () {
+		is_login: function() {
 			return this.userid != 0;
 		},
-		logout: function () {
+		logout: function() {
 			$.ajax({
 				type: 'post',
 				url: '/server/logout.php',
-				success: function (res) {
-					if (res['code'] == 0) {
+				success: function(res) {
+					if(res['code'] == 0) {
 						mdui.alert('已注销！一秒后跳转至主页。', '成功！');
-						setTimeout(function () {
+						setTimeout(function() {
 							location = '/index.html';
 						}, 1000);
 					} else mdui.alert('好像有点问题...', '出错！');
 				}
 			});
 		},
-		refresh_picture: function () {
+		refresh_picture: function() {
 			this.random_picture = this.get_info('image', 'random', 10);
 		},
-		get_info: function (gtype, gsort, gnum) {
+		get_info: function(gtype, gsort, gnum) {
 			var items = [];
 			$.ajax({
 				async: false,
@@ -57,7 +56,7 @@ var app = new Vue({
 					fsort: gsort,
 					fnum: gnum
 				},
-				success: function (res) {
+				success: function(res) {
 					items = res;
 				}
 			});
@@ -65,8 +64,8 @@ var app = new Vue({
 		}
 	},
 	watch: {
-		now_cs: function () {
-			switch (this.now_cs) {
+		now_cs: function() {
+			switch(this.now_cs) {
 				case 0:
 					console.log('Article!');
 					break;
@@ -82,11 +81,3 @@ var app = new Vue({
 		}
 	}
 });
-
-onresize = onload = function () {
-	var aspect = window.innerWidth / window.innerHeight;
-	if (aspect > 1.3) app.col_count = 4;
-	else if (aspect > 1) app.col_count = 3;
-	else if (aspect > 0.75) app.col_count = 2;
-	else app.col_count = 1;
-}
