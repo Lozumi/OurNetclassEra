@@ -9,10 +9,13 @@
 		);
 		$fun = 'imagecreatefrom' . $imageinfo['type'];
 		$image = $fun($src);
+		imagesavealpha($image, True);
 		$new_width = 304.75;
 		$new_height = $imageinfo['height'] * 304.75 / $imageinfo['width'];
 		$image_thump = imagecreatetruecolor($new_width, $new_height);
+		imagealphablending($image_thump, False);
+		imagesavealpha($image_thump, True);
 		imagecopyresampled($image_thump, $image, 0, 0, 0, 0, $new_width, $new_height, $imageinfo['width'], $imageinfo['height']);
-		imagejpeg($image_thump, $saveName . '.jpeg');
+		imagepng($image_thump, $saveName . '.png');
 	}
 ?>

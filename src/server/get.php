@@ -30,7 +30,7 @@
 		$get_username = mysqli_query($conn, "SELECT * FROM user WHERE id=$user_id");
 		$get_username = mysqli_fetch_assoc($get_username);
 		$nowrow['username'] = $get_username['username'];
-		$nowrow['fpath'] = '/slt/' . $row['fname'] . '.jpeg';
+		$nowrow['fpath'] = '/slt/' . $row['fname'] . '.png';
 		$nowrow['freal'] = '/files/' . $row['fname'] . '.' . $row['fend'];
 		if($row['fend'] == 'gif') $nowrow['fpath'] = $nowrow['freal'];
 		$nowrow['fdes'] = $row['fdes'];
