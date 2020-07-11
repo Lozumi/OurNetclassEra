@@ -1,5 +1,16 @@
 # 已完成
 
+```mysql
+CREATE TABLE user(
+id INT NOT NULL AUTO_INCREMENT,
+username VARCHAR(15) NOT NULL,
+password VARCHAR(32) NOT NULL,
+email VARCHAR(20) NOT NULL,
+usergrp VARCHAR(10) NOT NULL,
+regdate DATETIME,
+PRIMARY KEY ( id ));
+```
+
 用户 user：
 
 - id 编号: int
@@ -11,6 +22,15 @@
 
 ---
 
+```mysql
+CREATE TABLE auth(
+id INT NOT NULL AUTO_INCREMENT,
+userid INT NOT NULL,
+cookie VARCHAR(32) NOT NULL,
+expire INT NOT NULL,
+PRIMARY KEY ( id ));
+```
+
 登录状态 auth：
 
 - id 编号: int
@@ -20,6 +40,14 @@
 
 ---
 
+```mysql
+CREATE TABLE emailcode(
+id INT NOT NULL AUTO_INCREMENT,
+email VARCHAR(20) NOT NULL,
+code VARCHAR(6) NOT NULL,
+PRIMARY KEY ( id ));
+```
+
 邮件验证码 emailcode：
 
 - id 编号: int
@@ -28,12 +56,29 @@
 
 ---
 
+```mysql
+CREATE TABLE files(
+id INT NOT NULL AUTO_INCREMENT,
+userid INT NOT NULL,
+ftype VARCHAR(10) NOT NULL,
+fname VARCHAR(32) NOT NULL,
+fend VARCHAR(10) NOT NULL,
+fdes VARCHAR(300) NOT NULL,
+likes INT NOT NULL,
+scores DOUBLE NOT NULL,
+isshow BOOL NOT NULL,
+iswait BOOL NOT NULL,
+uptime DATETIME,
+PRIMARY KEY ( id ));
+```
+
 稿件 files：
 
 - id 编号: int
 - userid 投稿人编号: int
 - ftype 类型: (text, image, video)
-- fpath 文件: str
+- fname 文件名: str
+- fend 文件后缀名: str
 - fdes 简介: str
 - likes 获赞数: int
 - scores 平均分: double
