@@ -33,7 +33,7 @@
 		$new_name = rand_str();
 		$new_Name = $new_name . '.' . $temp;
 		move_uploaded_file($_FILES['picfile']['tmp_name'], '../files/' . $new_Name);
-		imgcompress('../files/' . $new_Name, '../slt/' . $new_name);
+		if($temp != 'gif') imgcompress('../files/' . $new_Name, '../slt/' . $new_name);
 		$conn = mysqli_connect('localhost:3308', 'root', '');
 		mysqli_query($conn, 'set names utf8');
 		mysqli_select_db($conn, 'test');

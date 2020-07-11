@@ -31,6 +31,8 @@
 		$get_username = mysqli_fetch_assoc($get_username);
 		$nowrow['username'] = $get_username['username'];
 		$nowrow['fpath'] = '/slt/' . $row['fname'] . '.jpeg';
+		$nowrow['freal'] = '/files/' . $row['fname'] . '.' . $row['fend'];
+		if($row['fend'] == 'gif') $nowrow['fpath'] = $nowrow['freal'];
 		$nowrow['fdes'] = $row['fdes'];
 		$nowrow['likes'] = $row['likes'];
 		$nowrow['scores'] = $row['scores'];
