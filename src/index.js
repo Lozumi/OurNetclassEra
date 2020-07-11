@@ -1,3 +1,15 @@
+const ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    autoplay: true,
+    theme: '#3f51b5',
+    audio: [{
+        name: '羽根',
+        artist: '折戸伸治',
+        url: '//play2.loid.top:5080/video/back.mp3',
+        cover: 'back.png'
+    }]
+});
 var app = new Vue({
 	el: '#app',
 	data: {
