@@ -23,7 +23,7 @@ var upload_app = new Vue({
 		});
 		this.userid = user_id;
 		this.username = user_name;
-		if(this.userid == 0) {
+		if(this.userid <= 0) {
 			mdui.alert('投稿前需要先登录！一秒后跳转至登录页面。', '提示');
 			setTimeout(function() {
 				location = '/login.html';

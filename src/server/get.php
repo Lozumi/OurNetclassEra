@@ -26,6 +26,7 @@
 		$row = mysqli_fetch_assoc($get_);
 		if($row['isshow']) continue;
 		$nowrow['id'] = $row['id'];
+		$nowrow['userid'] = $row['userid'];
 		$user_id = $row['userid'];
 		$get_username = mysqli_query($conn, "SELECT * FROM user WHERE id=$user_id");
 		$get_username = mysqli_fetch_assoc($get_username);
