@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>系统注册</title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css"
-		integrity="sha384-2PJ2u4NYg6jCNNpv3i1hK9AoAqODy6CdiC+gYiL2DVx+ku5wzJMFNdE3RoWfBIRP" crossorigin="anonymous" />
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css"
+		integrity="sha384-2PJ2u4NYg6jCNNpv3i1hK9AoAqODy6CdiC+gYiL2DVx+ku5wzJMFNdE3RoWfBIRP"
+		crossorigin="anonymous"
+	/>
+	<script
+		src="//cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"
+		integrity="sha384-aB8rnkAu/GBsQ1q6dwTySnlrrbhqDwrDnpVHR2Wgm8pWLbwUnzDcIROX3VvCbaK+"
+		crossorigin="anonymous"
+	></script>
 	<script src="//cdnjs.loli.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+	<script src="//cdnjs.loli.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style type="text/css">
-		html,
-		body {
-			height: 80%;
+		html, body {
+            height: 80%;
 		}
-
 		#regis_app {
 			position: relative;
 			top: 25%;
@@ -20,79 +27,60 @@
 		}
 	</style>
 </head>
-
 <body class="mdui-theme-accent-blue">
 	<div class="mdui-container" id="regis_app">
 		<div class="mdui-typo">
 			<h1 style="text-align: center;">
-				<button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple"
-					mdui-tooltip="{content: '主页', position: 'left'}" onclick="location='/index.html'"><i
-						class="mdui-icon material-icons">home</i></button>
+				<button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple" mdui-tooltip="{content: '主页', position: 'left'}" onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
 				系统注册
 			</h1>
 		</div>
-		<div class="mdui-textfield mdui-textfield-floating-label"
-			v-bind:class="{ 'mdui-textfield-invalid': is_username_error }">
+		<div class="mdui-textfield mdui-textfield-floating-label" v-bind:class="{ 'mdui-textfield-invalid': is_username_error }">
 			<i class="mdui-icon material-icons">account_circle</i>
 			<label class="mdui-textfield-label">用户名</label>
-			<input class="mdui-textfield-input" type="text" v-model="username_input"
-				v-on:change="clear_username_error" />
+			<input class="mdui-textfield-input" type="text" v-model="username_input" v-on:change="clear_username_error"/>
 			<div class="mdui-textfield-error">{{ username_error }}</div>
 			<div class="mdui-textfield-helper">用户名只能使用大小写英文字母、数字和下划线，且需在 4 到 15 位之间</div>
 		</div>
-		<div class="mdui-textfield mdui-textfield-floating-label"
-			v-bind:class="{ 'mdui-textfield-invalid': is_password_error }">
+		<div class="mdui-textfield mdui-textfield-floating-label" v-bind:class="{ 'mdui-textfield-invalid': is_password_error }">
 			<i class="mdui-icon material-icons">vpn_key</i>
 			<label class="mdui-textfield-label">密码</label>
-			<input class="mdui-textfield-input" type="password" v-model="password_input"
-				v-on:change="clear_password_error" />
+			<input class="mdui-textfield-input" type="password" v-model="password_input" v-on:change="clear_password_error"/>
 			<div class="mdui-textfield-error">{{ password_error }}</div>
 			<div class="mdui-textfield-helper">密码需在 6 到 20 位之间</div>
 		</div>
 		<div class="mdui-container-fluid">
 			<div class="mdui-row mdui-valign mdui-row-gapless">
-				<div class="mdui-textfield mdui-textfield-floating-label mdui-col-xs-9"
-					v-bind:class="{ 'mdui-textfield-invalid': is_email_error }">
+				<div class="mdui-textfield mdui-textfield-floating-label mdui-col-xs-9" v-bind:class="{ 'mdui-textfield-invalid': is_email_error }">
 					<i class="mdui-icon material-icons">email</i>
 					<label class="mdui-textfield-label">邮箱</label>
-					<input class="mdui-textfield-input" type="text" v-model="email_input"
-						v-on:change="clear_email_error" />
+					<input class="mdui-textfield-input" type="text" v-model="email_input" v-on:change="clear_email_error"/>
 					<div class="mdui-textfield-error">邮箱不合法</div>
 					<div class="mdui-textfield-helper">仅允许使用 QQ 邮箱</div>
 				</div>
 				<div class="mdui-col-xs-3">
-					<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center"
-						v-on:click="send_email" v-if="!cant_send()">发送验证码</button>
-					<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center"
-						v-if="cant_send()" disabled>重新发送({{ restime }})</button>
+					<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center" v-on:click="send_email" v-if="!cant_send()">发送验证码</button>
+					<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center" v-if="cant_send()" disabled>重新发送({{ restime }})</button>
 				</div>
 			</div>
 		</div>
-		<div class="mdui-textfield mdui-textfield-floating-label"
-			v-bind:class="{ 'mdui-textfield-invalid': is_code_error }">
+		<div class="mdui-textfield mdui-textfield-floating-label" v-bind:class="{ 'mdui-textfield-invalid': is_code_error }">
 			<i class="mdui-icon material-icons">code</i>
 			<label class="mdui-textfield-label">验证码</label>
-			<input class="mdui-textfield-input" type="text" v-model="code_input" v-on:change="clear_code_error"
-				v-on:keyup.enter="check" />
+			<input class="mdui-textfield-input" type="text" v-model="code_input" v-on:change="clear_code_error" v-on:keyup.enter="check"/>
 			<div class="mdui-textfield-error">验证码不能为空</div>
 			<div class="mdui-textfield-helper">{{ code_message }}</div>
 		</div>
-		<br />
+		<br/>
 		<div class="mdui-container">
 			<div class="mdui-col-xs-6">
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center"
-					v-on:click="check">注册</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center" v-on:click="check">注册</button>
 			</div>
 			<div class="mdui-col-xs-6">
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-center"
-					onclick="location='/login.html'">已有账号？</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-center" onclick="location='/login.html'">已有账号？</button>
 			</div>
 		</div>
 	</div>
-	<script src="//cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"
-		integrity="sha384-aB8rnkAu/GBsQ1q6dwTySnlrrbhqDwrDnpVHR2Wgm8pWLbwUnzDcIROX3VvCbaK+"
-		crossorigin="anonymous"></script>
 	<script src="/regis.js"></script>
 </body>
-
 </html>

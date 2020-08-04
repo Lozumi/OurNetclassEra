@@ -1,4 +1,3 @@
-$ = mdui.$;
 var regis_app = new Vue({
 	el: '#regis_app',
 	data: {
