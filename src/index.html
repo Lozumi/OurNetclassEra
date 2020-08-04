@@ -1,23 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>主页</title>
-	<link
-		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css"
-		integrity="sha384-2PJ2u4NYg6jCNNpv3i1hK9AoAqODy6CdiC+gYiL2DVx+ku5wzJMFNdE3RoWfBIRP"
-		crossorigin="anonymous"
-	/>
-	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/aplayer/1.10.1/APlayer.min.css"/>
-	<script
-		src="//cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"
-		integrity="sha384-aB8rnkAu/GBsQ1q6dwTySnlrrbhqDwrDnpVHR2Wgm8pWLbwUnzDcIROX3VvCbaK+"
-		crossorigin="anonymous"
-	></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css"
+		integrity="sha384-2PJ2u4NYg6jCNNpv3i1hK9AoAqODy6CdiC+gYiL2DVx+ku5wzJMFNdE3RoWfBIRP" crossorigin="anonymous" />
+	<link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/aplayer/1.10.1/APlayer.min.css" />
 	<script src="//cdnjs.loli.net/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
 	<script src="//cdnjs.loli.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
-	<script src="//cdnjs.loli.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style type="text/css">
 		#data_dis {
 			display: inline;
@@ -25,19 +16,25 @@
 		}
 	</style>
 </head>
+
 <body class="mdui-theme-accent-blue mdui-appbar-with-toolbar mdui-appbar-with-tab-larger">
 	<div id="aplayer"></div>
 	<div class="mdui-container" id="app">
 		<div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-toolbar-hide">
 			<div class="mdui-toolbar mdui-color-indigo">
-				<button class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '主页'}" onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
+				<button class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '主页'}"
+					onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
 				<a href="javascript:;" class="mdui-typo-headline">主页</a>
 				<div class="mdui-toolbar-spacer"></div>
 				<span class="mdui-typo-title">欢迎你，{{ username }}！</span>
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="location='/login.html'" v-show="not_login()">登录</button>
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white" onclick="location='/regis.html'" v-show="not_login()">注册</button>
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white" onclick="location='/upload.html'" v-show="is_login()">投稿</button>
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" v-on:click="logout" v-show="is_login()">注销</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent"
+					onclick="location='/login.html'" v-show="not_login()">登录</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white" onclick="location='/regis.html'"
+					v-show="not_login()">注册</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white" onclick="location='/upload.html'"
+					v-show="is_login()">投稿</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" v-on:click="logout"
+					v-show="is_login()">注销</button>
 			</div>
 			<div class="mdui-tab mdui-color-indigo mdui-tab-full-width" mdui-tab>
 				<a href="#article" class="mdui-ripple">
@@ -78,15 +75,17 @@
 					<a href="#random_picture" class="mdui-ripple" v-on:click="refresh_picture">随机 10 张</a>
 				</div>
 				<div v-bind:style=" { 'column-count': col_count } " id="latest_picture">
-					<div style="break-inside: avoid; margin-bottom: 10px;" class="mdui-card" v-for="item in get_info('image', 'uptime', 0)">
+					<div style="break-inside: avoid; margin-bottom: 10px;" class="mdui-card"
+						v-for="item in get_info('image', 'uptime', 0)">
 						<div class="mdui-card-header">
 							<i class="mdui-icon material-icons mdui-card-header-avatar">account_box</i>
 							<div class="mdui-card-header-title mdui-typo">
-								<a class="mdui-color-white" v-bind:href="'/user.html?id='+item.userid">{{ item.username }}</a>
+								<a class="mdui-color-white"
+									v-bind:href="'/user.html?id='+item.userid">{{ item.username }}</a>
 							</div>
 						</div>
 						<div class="mdui-card-media">
-							<img v-bind:src="item.fpath"/>
+							<img v-bind:src="item.fpath" />
 						</div>
 						<div class="mdui-card-content">{{ item.fdes }}</div>
 						<div class="mdui-card-actions">
@@ -98,20 +97,23 @@
 								<i class="mdui-icon material-icons">date_range</i>
 								{{ item.uptime }}
 							</div>
-							<button style="margin-top: 10px;" class="mdui-btn mdui-ripple mdui-center" v-bind:onclick="'location=\'/show.html?id='+item.id+'\''">详情</button>
+							<button style="margin-top: 10px;" class="mdui-btn mdui-ripple mdui-center"
+								v-bind:onclick="'location=\'/show.html?id='+item.id+'\''">详情</button>
 						</div>
 					</div>
 				</div>
 				<div v-bind:style=" { 'column-count': col_count } " id="highest_picture">
-					<div style="break-inside: avoid; margin-bottom: 10px;" class="mdui-card" v-for="item in get_info('image', 'likes', 0)">
+					<div style="break-inside: avoid; margin-bottom: 10px;" class="mdui-card"
+						v-for="item in get_info('image', 'likes', 0)">
 						<div class="mdui-card-header">
 							<i class="mdui-icon material-icons mdui-card-header-avatar">account_box</i>
 							<div class="mdui-card-header-title mdui-typo">
-								<a class="mdui-color-white" v-bind:href="'/user.html?id='+item.userid">{{ item.username }}</a>
+								<a class="mdui-color-white"
+									v-bind:href="'/user.html?id='+item.userid">{{ item.username }}</a>
 							</div>
 						</div>
 						<div class="mdui-card-media">
-							<img v-bind:src="item.fpath"/>
+							<img v-bind:src="item.fpath" />
 						</div>
 						<div class="mdui-card-content">{{ item.fdes }}</div>
 						<div class="mdui-card-actions">
@@ -123,20 +125,23 @@
 								<i class="mdui-icon material-icons">date_range</i>
 								{{ item.uptime }}
 							</div>
-							<button style="margin-top: 10px;" class="mdui-btn mdui-ripple mdui-center" v-bind:onclick="'location=\'/show.html?id='+item.id+'\''">详情</button>
+							<button style="margin-top: 10px;" class="mdui-btn mdui-ripple mdui-center"
+								v-bind:onclick="'location=\'/show.html?id='+item.id+'\''">详情</button>
 						</div>
 					</div>
 				</div>
 				<div v-bind:style=" { 'column-count': col_count } " id="random_picture">
-					<div style="break-inside: avoid; margin-bottom: 10px;" class="mdui-card" v-for="item in random_picture">
+					<div style="break-inside: avoid; margin-bottom: 10px;" class="mdui-card"
+						v-for="item in random_picture">
 						<div class="mdui-card-header">
 							<i class="mdui-icon material-icons mdui-card-header-avatar">account_box</i>
 							<div class="mdui-card-header-title mdui-typo">
-								<a class="mdui-color-white" v-bind:href="'/user.html?id='+item.userid">{{ item.username }}</a>
+								<a class="mdui-color-white"
+									v-bind:href="'/user.html?id='+item.userid">{{ item.username }}</a>
 							</div>
 						</div>
 						<div class="mdui-card-media">
-							<img v-bind:src="item.fpath"/>
+							<img v-bind:src="item.fpath" />
 						</div>
 						<div class="mdui-card-content">{{ item.fdes }}</div>
 						<div class="mdui-card-actions">
@@ -148,7 +153,8 @@
 								<i class="mdui-icon material-icons">date_range</i>
 								{{ item.uptime }}
 							</div>
-							<button style="margin-top: 10px;" class="mdui-btn mdui-ripple mdui-center" v-bind:onclick="'location=\'/show.html?id='+item.id+'\''">详情</button>
+							<button style="margin-top: 10px;" class="mdui-btn mdui-ripple mdui-center"
+								v-bind:onclick="'location=\'/show.html?id='+item.id+'\''">详情</button>
 						</div>
 					</div>
 				</div>
@@ -171,6 +177,10 @@
 			</div>
 		</div>
 	</div>
+	<script src="//cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"
+		integrity="sha384-aB8rnkAu/GBsQ1q6dwTySnlrrbhqDwrDnpVHR2Wgm8pWLbwUnzDcIROX3VvCbaK+"
+		crossorigin="anonymous"></script>
 	<script src="/index.js"></script>
 </body>
+
 </html>

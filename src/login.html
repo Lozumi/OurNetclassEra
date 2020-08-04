@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>系统登录</title>
-	<link
-		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css"
-		integrity="sha384-2PJ2u4NYg6jCNNpv3i1hK9AoAqODy6CdiC+gYiL2DVx+ku5wzJMFNdE3RoWfBIRP"
-		crossorigin="anonymous"
-	/>
-	<script
-		src="//cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"
-		integrity="sha384-aB8rnkAu/GBsQ1q6dwTySnlrrbhqDwrDnpVHR2Wgm8pWLbwUnzDcIROX3VvCbaK+"
-		crossorigin="anonymous"
-	></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css"
+		integrity="sha384-2PJ2u4NYg6jCNNpv3i1hK9AoAqODy6CdiC+gYiL2DVx+ku5wzJMFNdE3RoWfBIRP" crossorigin="anonymous" />
 	<script src="//cdnjs.loli.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
-	<script src="//cdnjs.loli.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!--<script src="//cdnjs.loli.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 	<style type="text/css">
-		html, body {
-            height: 80%;
+		html,
+		body {
+			height: 80%;
 		}
+
 		#login_app {
 			position: relative;
 			top: 35%;
@@ -27,34 +21,43 @@
 		}
 	</style>
 </head>
-<body class="mdui-theme-accent-blue">
+
+<body class="mdui-theme-accent-blue mdui-loaded">
 	<div class="mdui-container" id="login_app">
 		<div class="mdui-typo">
 			<h1 style="text-align: center;">
-				<button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple" mdui-tooltip="{content: '主页', position: 'left'}" onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
+				<button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple"
+					mdui-tooltip="{content: '主页', position: 'left'}" onclick="location='/index.html'"><i
+						class="mdui-icon material-icons">home</i></button>
 				系统登录
 			</h1>
 		</div>
 		<div class="mdui-textfield mdui-textfield-floating-label mdui-m-y-2">
 			<i class="mdui-icon material-icons">account_circle</i>
 			<label class="mdui-textfield-label">用户名</label>
-			<input class="mdui-textfield-input" type="text" v-model="username_input"/>
+			<input class="mdui-textfield-input" type="text" v-model="username_input" />
 		</div>
 		<div class="mdui-textfield mdui-textfield-floating-label">
 			<i class="mdui-icon material-icons">vpn_key</i>
 			<label class="mdui-textfield-label">密码</label>
-			<input class="mdui-textfield-input" type="password" v-model="password_input" v-on:keyup.enter="get_login"/>
+			<input class="mdui-textfield-input" type="password" v-model="password_input" v-on:keyup.enter="get_login" />
 		</div>
-		<br/>
+		<br />
 		<div class="mdui-container mdui-m-y-5">
 			<div class="mdui-col-xs-6">
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center" v-on:click="get_login">登录</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-center"
+					v-on:click="get_login">登录</button>
 			</div>
 			<div class="mdui-col-xs-6">
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-center" onclick="location='/regis.html'">没有账号？</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-center"
+					onclick="location='/regis.html'">没有账号？</button>
 			</div>
 		</div>
 	</div>
+	<script src="//cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"
+		integrity="sha384-aB8rnkAu/GBsQ1q6dwTySnlrrbhqDwrDnpVHR2Wgm8pWLbwUnzDcIROX3VvCbaK+"
+		crossorigin="anonymous"></script>
 	<script src="/login.js"></script>
 </body>
+
 </html>
