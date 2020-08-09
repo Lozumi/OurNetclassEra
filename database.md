@@ -100,6 +100,15 @@ PRIMARY KEY ( id ));
 
 ---
 
+```mysql
+CREATE TABLE likes (
+id INT NOT NULL AUTO_INCREMENT,
+uid INT NOT NULL,
+fid INT NOT NULL,
+time DATETIME,
+PRIMARY KEY ( id ));
+```
+
 点赞：
 
 - 编号: int

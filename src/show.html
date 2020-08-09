@@ -43,8 +43,8 @@
 				<div class="mdui-card-content">{{ item.fdes }}</div>
 				<div class="mdui-card-actions">
 					<div id="data_dis">
-						<i class="mdui-icon material-icons">favorite</i>
-						{{ item.likes }}
+						<button class="mdui-btn" onclick="like()"> <i class="mdui-icon material-icons">favorite</i>
+						{{ item.likes }} </button>
 						<i class="mdui-icon material-icons" style="margin-left: 50px;">date_range</i>
 						{{ item.uptime }}
 					</div>

@@ -61,3 +61,19 @@ var show_app = new Vue({
 		}
 	}
 });
+
+function like() {
+	$.ajax({
+		type: "post",
+		url: "/server/like.php",
+		data: {
+			id: show_app.item.id,
+		},
+		success: function() {
+			mdui.alert("点赞成功!");
+		},
+		error: function(res) {
+			mdui.alert("点赞失败...\n原因: "+res.responseJSON.err);
+		}
+	});
+}
