@@ -18,6 +18,22 @@ var show_app = new Vue({
 		});
 		this.userid = user_id;
 		this.username = user_name;
+		var url = new URL(document.url);
+		var id = url.searchParams.get("id");
+		if (id == undefined) {
+			mdui.alert("未选择作品哦! 1秒后返回上一页");
+			setTimeout(() => {
+				history.back();
+			}, 1000);
+		}
+		$.get(`/server/get_info_by_id.php?id=${id}`, {
+			success: function(data) {
+				
+			},
+			error: function(data) {
+				mdui.alert(data["err"]);
+			}
+		})
 	},
 	methods: {
 		not_login: function() {
