@@ -2,7 +2,8 @@ var show_app = new Vue({
 	el: '#show_app',
 	data: {
 		userid: 0,
-		username: ''
+		username: '',
+		item: []
 	},
 	created: function() {
 		var user_id = 0;
@@ -18,20 +19,22 @@ var show_app = new Vue({
 		});
 		this.userid = user_id;
 		this.username = user_name;
-		var url = new URL(document.url);
+		var url = new URL(document.URL);
 		var id = url.searchParams.get("id");
 		if (id == undefined) {
-			mdui.alert("未选择作品哦! 1秒后返回上一页");
+			mdui.alert("未选择作品哦!\n1秒后返回上一页");
 			setTimeout(() => {
 				history.back();
 			}, 1000);
 		}
-		$.get(`/server/get_info_by_id.php?id=${id}`, {
-			success: function(data) {
-				
+		$.ajax({
+			type: "get",
+			url: `/server/get_info_by_id.php?id=${id}`,
+			success: function(res) {
+				show_app.item = res;
 			},
-			error: function(data) {
-				mdui.alert(data["err"]);
+			error: function(res) {
+				mdui.alert(res.responseJSON.err);
 			}
 		})
 	},

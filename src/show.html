@@ -1,46 +1,61 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>作品展示</title>
-	<link
-		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css"
-		integrity="sha384-2PJ2u4NYg6jCNNpv3i1hK9AoAqODy6CdiC+gYiL2DVx+ku5wzJMFNdE3RoWfBIRP"
-		crossorigin="anonymous"
-	/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css"
+		integrity="sha384-2PJ2u4NYg6jCNNpv3i1hK9AoAqODy6CdiC+gYiL2DVx+ku5wzJMFNdE3RoWfBIRP" crossorigin="anonymous" />
 	<script src="//cdnjs.loli.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
 	<script src="//cdnjs.loli.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body class="mdui-theme-accent-blue mdui-appbar-with-toolbar">
 	<div class="mdui-container" id="show_app">
 		<div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-toolbar-hide">
 			<div class="mdui-toolbar mdui-color-indigo">
-				<button class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '主页'}" onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
+				<button class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '主页'}"
+					onclick="location='/index.html'"><i class="mdui-icon material-icons">home</i></button>
 				<a href="javascript:;" class="mdui-typo-headline">作品展示</a>
 				<div class="mdui-toolbar-spacer"></div>
 				<span class="mdui-typo-title">欢迎你，{{ username }}！</span>
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="location='/login.html'" v-show="not_login()">登录</button>
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white" onclick="location='/regis.html'" v-show="not_login()">注册</button>
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white" onclick="location='/upload.html'" v-show="is_login()">投稿</button>
-				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" v-on:click="logout" v-show="is_login()">注销</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent"
+					onclick="location='/login.html'" v-show="not_login()">登录</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white" onclick="location='/regis.html'"
+					v-show="not_login()">注册</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white" onclick="location='/upload.html'"
+					v-show="is_login()">投稿</button>
+				<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" v-on:click="logout"
+					v-show="is_login()">注销</button>
 			</div>
 		</div>
 		<div class="mdui-center" style="max-width: 1280px;">
-			<div class="mdui-typo">
-				<div class="mdui-row">
-					<div class="mdui-col-xs-12">
-						
+			<div calss="mdui-card mdui-hoverable">
+				<div class="mdui-card-header">
+					<i class="mdui-icon material-icons mdui-card-header-avatar">account_box</i>
+					<div class="mdui-card-header-title mdui-typo">
+						<a class="mdui-color-white" v-bind:href="'/user.html?id='+item.uid">{{ item.username }}</a>
+					</div>
+				</div>
+				<div class="mdui-card-media">
+					<img v-bind:src="item.path" />
+				</div>
+				<div class="mdui-card-content">{{ item.fdes }}</div>
+				<div class="mdui-card-actions">
+					<div id="data_dis">
+						<i class="mdui-icon material-icons">favorite</i>
+						{{ item.likes }}
+						<i class="mdui-icon material-icons" style="margin-left: 50px;">date_range</i>
+						{{ item.uptime }}
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script
-		src="//cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"
+	<script src="//cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"
 		integrity="sha384-aB8rnkAu/GBsQ1q6dwTySnlrrbhqDwrDnpVHR2Wgm8pWLbwUnzDcIROX3VvCbaK+"
-		crossorigin="anonymous"
-	></script>
+		crossorigin="anonymous"></script>
 	<script src="/show.js"></script>
 </body>
+
 </html>

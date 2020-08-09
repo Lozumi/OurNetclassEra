@@ -1,4 +1,4 @@
-const ap = new APlayer({
+/*const ap = new APlayer({
     container: document.getElementById('aplayer'),
     fixed: true,
     autoplay: true,
@@ -9,7 +9,7 @@ const ap = new APlayer({
         url: '//play2.loid.top:5080/video/back.mp3',
         cover: 'back.png'
     }]
-});
+});*/
 var app = new Vue({
 	el: '#app',
 	data: {
