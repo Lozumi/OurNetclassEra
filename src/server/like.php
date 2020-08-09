@@ -15,6 +15,14 @@ if ($fid == null) {
 $conn = mysqli_connect('localhost:3308', 'root', '');
 mysqli_query($conn, 'set names utf8');
 mysqli_select_db($conn, 'test');
+
+$num = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM likes WHERE time>CURDATE() AND uid=$uid"));
+if ($num >= 3) {
+    header("Content-Type: application/json", true, 403);
+    echo(json_encode(array("err"=>"每个用户每天只能点3个赞!")));
+    return;
+}
+
 mysqli_query($conn, "INSERT INTO likes (uid, fid, time) VALUES ($uid, $fid, NOW())");
 $likes = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM files WHERE id=$fid"))["likes"] + 1;
 mysqli_query($conn, "UPDATE files SET likes=$likes WHERE id=$fid");

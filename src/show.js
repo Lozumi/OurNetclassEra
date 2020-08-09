@@ -70,10 +70,11 @@ function like() {
 			id: show_app.item.id,
 		},
 		success: function() {
+			show_app.item.likes++;
 			mdui.alert("点赞成功!");
 		},
 		error: function(res) {
-			mdui.alert("点赞失败...\n原因: "+res.responseJSON.err);
+			mdui.alert("点赞失败... 原因: "+res.responseJSON.err);
 		}
 	});
 }
